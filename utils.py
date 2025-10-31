@@ -29,14 +29,15 @@ def kl2(q, p, prec=18):
     """
     Modified for stability
     """
-    res = q * (np.log2(q) - np.log2(p))
+    res = q * (np.log2(np.maximum(q, 1e-15)) - np.log2(np.maximum(p, 1e-15)))
     res[q == 0] = 0
     ressum = res.sum()
     return np.around(ressum, decimals=prec)
 
 
 def entropy2(q, prec=18):
-    res = q * np.log2(q)
+    res = q * np.log2(np.maximum(q, 1e-15))
+    res = q * np.log2(np.maximum(q, 1e-15))
     res[q == 0] = 0
     ressum = res.sum()
     return -np.around(ressum, decimals=prec)
