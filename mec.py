@@ -99,7 +99,8 @@ def mec_kocaoglu_np(p: np.array, q: np.array):
     # e = []
     M = np.stack((p, q), 0)
     r = M.max(axis=1).min()
-    while r > 0:
+    while r > 1e-15:
+    # while r > 1e-15:
         # e.append(r)
         a_i = M.argmax(axis=1)
         M[0, a_i[0]] -= r
